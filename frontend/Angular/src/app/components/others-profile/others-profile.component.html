@@ -1,0 +1,119 @@
+<app-header></app-header>
+
+
+<div class="navbar">
+
+  <div class=" gap-6 navbar " style="width: 50vw ; justify-content: space-around;
+  align-items: center; right: 25vw; left: 25vw; position: absolute" >
+
+    <p-button (click)="logout()" class="nav-item">
+      <div class="icons gap-2">
+        <p style="font-size: 1.1rem">Abmelden</p>
+        <img  src="/assets/icons/exit.png">
+      </div>
+
+    </p-button>
+
+    <p-button   (click)="fahrtangebote()" class="nav-item"  >
+      <div class="icons gap-2">
+        <p >FahrtAngebote</p>
+        <img  src="/assets/icons/fahrtangebote.png">
+      </div>
+    </p-button>
+
+    <p-button *ngIf="isdriver === true"   (click)="driverdashboard()" class="nav-item" >
+      <div class="icons gap-2">
+        <p >Dashboard</p>
+        <img  src="/assets/icons/route.png">
+      </div>
+    </p-button>
+
+
+    <p-button (click)="startseite()" class="nav-item">
+      <div class="icons gap-2">
+        <p >Startseite</p>
+        <img  src="/assets/icons/home.png">
+      </div>
+    </p-button>
+
+  </div>
+
+</div>
+
+
+
+
+<div class="profile-container">
+  <h1 class="main-heading">Profile</h1>
+  <div class="icon-block">
+    <a routerLink="/search-profile" class="search-button">
+      <span class="pi pi-search"></span>
+    </a>
+  </div>
+
+  <div class="profile-left">
+    <!-- Linke Spalte -->
+    <div class="profile-image-container">
+      <img  [src]="photoUrl"   alt="profile picture"
+            loading="lazy"
+            decoding="async"
+            class="avatar"/>
+    </div>
+
+    <div class="profile-stats">
+      <div class="stat-item">
+        <div class="rating" >
+          <div class="star">
+            <p-rating  [ngModel]="profileDTO.rating" class="p-1" [readonly]="true" [stars]="5"   ></p-rating>
+          </div>
+        </div>
+        <div class="stat-content">
+          <span class="stat-value">{{ profileDTO.rating | number:'1.1-1' }}/5</span>
+          <span class="stat-label">Bewertung</span>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <i class="pi pi-check"style="color: green"></i>
+        <div class="stat-content">
+          <span class="stat-value">{{ profileDTO.totalRides }}</span>
+          <span class="stat-label">Fahrten</span>
+        </div>
+      </div>
+
+      <div class="stat-item" *ngIf="profileDTO.role === 'Fahrer'">
+        <i class="pi pi-car" style="color: darkred"></i>
+        <div class="stat-content">
+          <span class="stat-value">{{ profileDTO.carClass }}</span>
+          <span class="stat-label">Auto-Klasse</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rechte Spalte -->
+  <div class="profile-right">
+    <div class="profile-details">
+      <div class="user-header">
+        <h1>{{ profileDTO.firstName }} {{ profileDTO.lastName }}</h1>
+        <p class="role">{{ profileDTO.role }}</p>
+      </div>
+      <div class="detail-group">
+        <h2>Informationen von {{profileDTO.firstName}} {{profileDTO.firstName}}</h2>
+        <div class="detail-item">
+          <span class="label">Benutzername:</span>
+          <span class="value">{{ profileDTO.userName }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">E-Mail:</span>
+          <span class="value">{{ profileDTO.email }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Geburtsdatum:</span>
+          <span class="value">{{ profileDTO.dateOfBirth | date:'dd.MM.yyyy' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

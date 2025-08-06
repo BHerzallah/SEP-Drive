@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SEP-Drive</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+
+  <div style="position: absolute; top: 23rem; left: 11rem; text-align: center;
+  color: white;
+  padding: 20px; width: 40rem ">
+  <p  >Starte jetzt deine erste Fahrt <br> flexibel, einfach, zuverlässig</p>
+  </div>
+<div class="content" >
+  <h1 style="position: absolute; top: 8rem; left: 8rem " >SEP-Drive</h1>
+  <div  style="position: absolute; top: 36rem; left: 18rem; text-align: center;
+  color: white;
+  padding: 20px; " >
+
+  <a
+    *ngIf="isLoggedIn"
+    [routerLink]="['/login']"
+  >
+    Zum Login
+  </a>
+
+  <!-- Otherwise show a link to their dashboard -->
+  <a
+    *ngIf="!isLoggedIn"
+    [routerLink]="['/home']"
+  >
+    Zum Dashboard
+  </a>
+  </div>
+</div>
+</body>
+
+
+</html>
